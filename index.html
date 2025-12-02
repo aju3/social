@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connect with Friends | Login</title>
+    <!-- Load Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        // Custom Tailwind Config to mimic the old Facebook blue and aesthetics
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Helvetica Neue', 'Arial', 'sans-serif'],
+                    },
+                    colors: {
+                        // Classic FB Blue
+                        'fb-blue': '#3b5998',
+                        'fb-dark-blue': '#29487d',
+                        // Light Gray BG
+                        'fb-bg-gray': '#f0f2f5',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        /* Ensures the whole screen is covered by the light gray background */
+        .login-bg {
+            background-color: #f0f2f5;
+        }
+        /* Style for the classic button look */
+        .classic-button {
+            transition: background-color 0.2s;
+            box-shadow: 0 1px 1px rgba(0,0,0,.09);
+        }
+        .classic-button:hover {
+            background-color: #4c69ba; 
+        }
+        /* Clunky input borders */
+        input:focus {
+            outline: none;
+            box-shadow: 0 0 0 2px #e7f3ff;
+            border-color: #6c8ccd;
+        }
+    </style>
+</head>
+<body class="font-sans login-bg min-h-screen">
+
+    <!-- Navbar/Header Bar -->
+    <header id="login-header" class="bg-fb-blue text-white shadow-md p-2 md:p-3">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <h1 class="text-3xl font-bold">social</h1>
+            
+            <!-- Desktop/Tablet Login Fields (Hidden on Mobile) -->
+            <form id="desktop-login-form" class="hidden md:flex space-x-2 text-sm items-end">
+                <div>
+                    <label for="d-email" class="block text-xs font-medium opacity-80 mb-1">Email or Phone</label>
+                    <input type="text" id="d-email" placeholder="email@example.com" class="w-36 p-1 border border-gray-400 text-gray-900 rounded-sm">
+                </div>
+                <div>
+                    <label for="d-pass" class="block text-xs font-medium opacity-80 mb-1">Password</label>
+                    <input type="password" id="d-pass" placeholder="********" class="w-36 p-1 border border-gray-400 text-gray-900 rounded-sm">
+                    <a href="#" class="block text-xs text-blue-300 hover:underline mt-1">Forgot password?</a>
+                </div>
+                <button type="submit" class="classic-button bg-fb-dark-blue text-white px-3 py-1 font-bold rounded-sm border border-fb-dark-blue">
+                    Log In
+                </button>
+            </form>
+        </div>
+    </header>
+
+    <!-- Main Content Area -->
+    <main id="login-view" class="max-w-7xl mx-auto pt-10 md:pt-16 px-4">
+        
+        <!-- Left Side: Marketing Text -->
+        <div class="md:w-1/2 mx-auto md:mx-0 md:float-left md:pr-10">
+            <h2 class="text-3xl font-semibold text-fb-blue mb-4">
+                Connect with the people in your life.
+            </h2>
+            <img 
+                src="https://placehold.co/500x300/e9ebee/3b5998?text=A+Nostalgic+Photo+Collage" 
+                alt="Nostalgic social media collage" 
+                class="w-full rounded-md shadow-lg"
+            >
+        </div>
+
+        <!-- Right Side: Mobile/Tablet Login & Sign Up Box -->
+        <div class="md:w-1/2 mx-auto md:mx-0 md:float-right mt-8 md:mt-0">
+            
+            <!-- Login Box for Mobile/Tablet -->
+            <div class="md:hidden bg-white p-6 rounded-lg shadow-lg border border-gray-200 mb-6">
+                 <h3 class="text-xl font-bold text-gray-700 mb-4">Log in</h3>
+                 <form id="mobile-login-form" class="space-y-4">
+                    <input type="text" id="m-email" placeholder="Email address or phone number" required class="w-full p-3 border border-gray-300 rounded-md">
+                    <input type="password" id="m-pass" placeholder="Password" required class="w-full p-3 border border-gray-300 rounded-md">
+                    <button type="submit" class="classic-button w-full bg-fb-blue text-white p-3 font-bold text-lg rounded-md border border-fb-dark-blue">
+                        Log In
+                    </button>
+                    <a href="#" class="block text-center text-fb-blue text-sm hover:underline">Forgot Password?</a>
+                 </form>
+            </div>
+            
+            <!-- Sign Up Form Mockup -->
+            <div class="bg-white p-6 rounded-lg shadow-lg border border-gray-200">
+                <h3 class="text-3xl font-bold text-gray-800 text-center mb-1">
+                    Create an account
+                </h3>
+                <p class="text-gray-600 text-center mb-4">It's quick and easy.</p>
+                <form class="space-y-3">
+                    <div class="flex space-x-2">
+                        <input type="text" placeholder="First Name" class="w-1/2 p-3 border border-gray-300 rounded-md bg-gray-50">
+                        <input type="text" placeholder="Last Name" class="w-1/2 p-3 border border-gray-300 rounded-md bg-gray-50">
+                    </div>
+                    <input type="text" placeholder="Mobile number or email" class="w-full p-3 border border-gray-300 rounded-md bg-gray-50">
+                    <input type="password" placeholder="New password" class="w-full p-3 border border-gray-300 rounded-md bg-gray-50">
+                    <div class="pt-2 text-center">
+                        <button type="button" class="bg-green-600 classic-button text-white px-8 py-3 font-bold text-xl rounded-md hover:bg-green-700">
+                            Create Account
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+    </main>
+    
+    <!-- Error Page State (Initially Hidden) -->
+    <div id="error-view" class="hidden fixed inset-0 login-bg flex items-center justify-center p-4 z-50">
+        <div class="bg-white p-10 rounded-xl shadow-2xl max-w-lg w-full text-center border-4 border-red-500">
+            <svg class="w-20 h-20 text-red-500 mx-auto mb-6 animate-pulse" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.332 16c-.77 1.333.192 3 1.732 3z"></path>
+            </svg>
+            <h2 class="text-4xl font-extrabold text-gray-900 mb-4">
+                [ NETWORK ERROR 0x8688 ]
+            </h2>
+            <p class="text-xl text-gray-700 mb-6">
+                <span class="font-bold text-red-600">ATTENTION:</span> Our sophisticated network grid is currently experiencing a temporary outage.
+            </p>
+            <p class="text-lg text-gray-500 italic">
+                (This outage has been temporary since 2012. Please try again in 5-10 years.)
+            </p>
+            <button onclick="window.location.reload()" class="mt-8 bg-gray-200 text-gray-700 classic-button px-6 py-2 rounded-md font-bold hover:bg-gray-300">
+                Refresh (It Won't Help)
+            </button>
+        </div>
+    </div>
+
+
+    <script>
+        // Get all login forms (desktop and mobile)
+        const desktopForm = document.getElementById('desktop-login-form');
+        const mobileForm = document.getElementById('mobile-login-form');
+        
+        const loginView = document.getElementById('login-view');
+        const loginHeader = document.getElementById('login-header');
+        const errorView = document.getElementById('error-view');
+        
+        /**
+         * Generic function to handle the login submission and display the error page.
+         */
+        function handleLogin(event) {
+            event.preventDefault();
+            
+            // 1. Hide the main login views
+            loginView.classList.add('hidden');
+            loginHeader.classList.add('hidden');
+
+            // 2. Show the error page
+            errorView.classList.remove('hidden');
+        }
+
+        // Attach the handler to both forms
+        if (desktopForm) {
+            desktopForm.addEventListener('submit', handleLogin);
+        }
+        if (mobileForm) {
+            mobileForm.addEventListener('submit', handleLogin);
+        }
+
+        // Catch the create account buttons too for consistency
+        const createAccountButtons = document.querySelectorAll('button[type="button"]');
+        createAccountButtons.forEach(button => {
+            button.addEventListener('click', handleLogin);
+        });
+
+    </script>
+</body>
+</html>
+
